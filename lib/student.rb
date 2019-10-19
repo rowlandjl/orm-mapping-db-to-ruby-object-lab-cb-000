@@ -93,6 +93,10 @@ class Student
       WHERE grade = 10 
       LIMIT ?
     SQL
+    
+    DB[:conn].execute(sql, number).map do |row|
+      self.new_from_db(row)
+    end 
   end 
   
   def self.first_student_in_grade_10 
